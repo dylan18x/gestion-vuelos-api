@@ -1,0 +1,15 @@
+# Verifica la conexión con PostgreSQL y aplica las migraciones
+uv run python manage.py migrate
+
+# Verifica que no hay errores de configuración
+uv run python manage.py check
+
+# Crea el superusuario para acceder al admin
+uv run python manage.py createsuperuser
+
+# Inicia el servidor
+uv run python manage.py runserver
+
+CREATE USER gestion-vuelos_user WITH PASSWORD 'gestion-vuelos_pass';
+CREATE DATABASE gestion-vuelos_db OWNER gestion-vuelos_user;
+GRANT ALL PRIVILEGES ON DATABASE gestion-vuelos_db TO gestion-vuelos_user;
