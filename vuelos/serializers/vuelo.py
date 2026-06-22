@@ -1,29 +1,17 @@
-from django.db import models
+from rest_framework import serializers
+from vuelos.models import Vuelo
 
 
-class Vuelo(models.Model):
-    ESTADO_CHOICES = [
-        ('programado', 'Programado'),
-        ('en_vuelo',   'En Vuelo'),
-        ('aterrizado', 'Aterrizado'),
-        ('cancelado',  'Cancelado'),
-        ('demorado',   'Demorado'),
-    ]
-
-    codigo_vuelo = models.CharField(max_length=20, unique=True)
-    fecha        = models.DateField()
-    estado       = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='programado')
-    id_avion     = models.ForeignKey(
-        'store.Avion',
-        on_delete=models.PROTECT,
-        related_name='vuelos',
-        db_column='id_avion',
-    )
-
+class VueloSerializer(serializers.ModelSerializer):
     class Meta:
-        verbose_name        = 'Vuelo'
-        verbose_name_plural = 'Vuelos'
-        ordering            = ['fecha', 'codigo_vuelo']
+        model  = Vuelo
+        fields = ['id', 'codigo_vuelo', 'fecha', 'estado', 'id_avion']
+        read_only_fields = ['id']
 
-    def __str__(self):
-        return f'{self.codigo_vuelo} — {self.fecha}'
+    def validate_codigo_vuelo(self, value):
+        qs = Vuelo.objects.filter(codigo_vuelo__iexact=value)
+        if self.instance:
+            qs = qs.exclude(pk=self.instance.pk)
+        if qs.exists():
+            raise serializers.ValidationError('Ya existe un vuelo con este código.')
+        return value.upper()

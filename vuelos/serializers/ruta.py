@@ -1,25 +1,14 @@
-from django.db import models
+from rest_framework import serializers
+from vuelos.models import Ruta
 
 
-class Ruta(models.Model):
-    origen  = models.ForeignKey(
-        'store.Aeropuerto',
-        on_delete=models.PROTECT,
-        related_name='rutas_origen',
-        db_column='origen',
-    )
-    destino = models.ForeignKey(
-        'store.Aeropuerto',
-        on_delete=models.PROTECT,
-        related_name='rutas_destino',
-        db_column='destino',
-    )
-
+class RutaSerializer(serializers.ModelSerializer):
     class Meta:
-        verbose_name        = 'Ruta'
-        verbose_name_plural = 'Rutas'
-        ordering            = ['origen', 'destino']
-        unique_together     = [['origen', 'destino']]
+        model  = Ruta
+        fields = ['id', 'origen', 'destino']
+        read_only_fields = ['id']
 
-    def __str__(self):
-        return f'{self.origen} → {self.destino}'
+    def validate(self, data):
+        if data.get('origen') == data.get('destino'):
+            raise serializers.ValidationError('El origen y destino no pueden ser el mismo aeropuerto.')
+        return data
