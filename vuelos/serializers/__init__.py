@@ -6,3 +6,10 @@ from .user import (
     UserProfileSerializer,
     ChangePasswordSerializer,
 )
+
+from .empleado_serializer import EmpleadoSerializer
+from .piloto_serializer import PilotoSerializer
+from .tripulacion_serializer import TripulacionSerializer
+from .asignacion_tripulacion_serializer import AsignacionTripulacionSerializer
+from .pista_serializer import PistaSerializer
+from .asignacion_pista_serializer import AsignacionPistaSerializer
