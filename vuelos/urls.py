@@ -14,6 +14,7 @@ from vuelos.views.aereolinea_views import AerolineaViewSet
 from vuelos.views.avion_views import AvionViewSet
 from vuelos.views.tipo_avion_views import TipoAvionViewSet
 from vuelos.views.matenimiento_views import MantenimientoViewSet
+from vuelos.views.estado_vuelo_views import EstadoVueloViewSet
 
 
 router = DefaultRouter()
@@ -25,6 +26,7 @@ router.register(r'aerolineas', AerolineaViewSet)
 router.register(r'aviones', AvionViewSet)
 router.register(r'tipos-avion', TipoAvionViewSet)
 router.register(r'mantenimientos', MantenimientoViewSet)
+router.registe(r'Estado_vuelo', EstadoVueloViewSet)
 urlpatterns = [
     path('health/',             health_check),
     path('auth/register/',      RegisterView.as_view()),
