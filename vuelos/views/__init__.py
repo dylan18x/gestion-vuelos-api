@@ -7,6 +7,7 @@ from .matenimiento_views import * # Sin la primera 'n', tal como tu archivo
 from .puerta_embarque_views import *
 from .terminal_views import *
 from .estado_vuelo_views import *
+from .clima_views import *
 # Si tienes tipo_avion_views.py más abajo en esa carpeta, agrégalo aquí:
 # from .tipo_avion_views import * ```
 
