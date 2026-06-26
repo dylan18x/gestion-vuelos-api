@@ -14,7 +14,10 @@ from vuelos.views import (
     TripulacionViewSet, 
     AsignacionTripulacionViewSet, 
     PistaViewSet, 
-    AsignacionPistaViewSet
+    AsignacionPistaViewSet,
+    TorreControlViewSet, 
+    AutorizacionVueloViewSet
+    
 )
 
 router = DefaultRouter()
@@ -26,6 +29,8 @@ router.register('tripulacion', TripulacionViewSet, basename='tripulacion')
 router.register('asignacion-tripulacion', AsignacionTripulacionViewSet, basename='asignacion-tripulacion')
 router.register('pistas', PistaViewSet, basename='pista')
 router.register('asignacion-pista', AsignacionPistaViewSet, basename='asignacion-pista')
+router.register('torres-control', TorreControlViewSet, basename='torre-control')
+router.register('autorizaciones-vuelo', AutorizacionVueloViewSet, basename='autorizacion-vuelo')
 
 urlpatterns = [
     path('health/',             health_check),

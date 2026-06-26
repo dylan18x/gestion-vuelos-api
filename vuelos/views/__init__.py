@@ -5,3 +5,5 @@ from .tripulacion_views import TripulacionViewSet
 from .asignacion_tripulacion_views import AsignacionTripulacionViewSet
 from .pista_views import PistaViewSet
 from .asignacion_pista_views import AsignacionPistaViewSet
+from .torre_control_views import TorreControlViewSet
+from .autorizacion_vuelo_views import AutorizacionVueloViewSet
