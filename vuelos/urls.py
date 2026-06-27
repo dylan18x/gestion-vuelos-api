@@ -4,6 +4,7 @@ from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 
 from vuelos.views.health import health_check
 from vuelos.views.auth import RegisterView, LogoutView
+from vuelos.views.historial_estado_vuelo import HistorialEstadoVueloViewSet
 from vuelos.views.user import UserViewSet
 from vuelos.serializers.auth import CustomTokenView
 from vuelos.views.health     import health_check
@@ -68,15 +69,15 @@ from vuelos.views import (
 router = DefaultRouter()
 
 router.register('users', UserViewSet, basename='user')
-router.register(r'aeropuertos', AeropuertoViewSet)
-router.register(r'terminales', TerminalViewSet)
-router.register(r'puertas-embarque', PuertaEmbarqueViewSet)
-router.register(r'aerolineas', AerolineaViewSet)
-router.register(r'aviones', AvionViewSet)
-router.register(r'tipos-avion', TipoAvionViewSet)
-router.register(r'mantenimientos', MantenimientoViewSet)
-router.registe(r'Estado_vuelo', EstadoVueloViewSet)
-router.register(r'Clima',ClimaViewSet)
+router.register('aeropuertos', AeropuertoViewSet)
+router.register('terminales', TerminalViewSet)
+router.register('puertas-embarque', PuertaEmbarqueViewSet)
+router.register('aerolineas', AerolineaViewSet)
+router.register('aviones', AvionViewSet)
+router.register('tipos-avion', TipoAvionViewSet)
+router.register('mantenimientos', MantenimientoViewSet)
+router.register('Estado_vuelo', EstadoVueloViewSet)
+router.register('Clima', ClimaViewSet)
 router.register('empleados', EmpleadoViewSet, basename='empleado')
 router.register('pilotos', PilotoViewSet, basename='piloto')
 router.register('tripulacion', TripulacionViewSet, basename='tripulacion')
@@ -85,6 +86,7 @@ router.register('pistas', PistaViewSet, basename='pista')
 router.register('asignacion-pista', AsignacionPistaViewSet, basename='asignacion-pista')
 router.register('torres-control', TorreControlViewSet, basename='torre-control')
 router.register('autorizaciones-vuelo', AutorizacionVueloViewSet, basename='autorizacion-vuelo')
+router.register('historial-estados-vuelo', HistorialEstadoVueloViewSet, basename='historial-estado-vuelo')
 
 urlpatterns = [
     path('health/',             health_check),

@@ -33,3 +33,4 @@ from .pista_serializer import PistaSerializer
 from .asignacion_pista_serializer import AsignacionPistaSerializer  
 from .torre_control_serializer import TorreControlSerializer  
 from .autorizacion_vuelo_serializer import AutorizacionVueloSerializer 
+from .historial_estado_vuelo import HistorialEstadoVueloSerializer

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from .aereolinea_views import *
 from .aereopuerto_views import * # Con dos 'e'
 from .auth import *
@@ -15,7 +14,6 @@ from .clima_views import *
 from rest_framework import viewsets
 from ..models import Aeropuerto
 from ..serializers import * # Usar el asterisco ayuda a evitar fallos por nombres individuales mientras se prueba
-=======
 # vuelos/views/__init__.py
 from .empleado_views import EmpleadoViewSet
 from .piloto_views import PilotoViewSet
@@ -25,4 +23,3 @@ from .pista_views import PistaViewSet
 from .asignacion_pista_views import AsignacionPistaViewSet
 from .torre_control_views import TorreControlViewSet
 from .autorizacion_vuelo_views import AutorizacionVueloViewSet
->>>>>>> 073ee95f9b492e08d7801f73f69d9bcc0df0a4d6

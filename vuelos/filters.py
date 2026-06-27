@@ -3,6 +3,7 @@ from vuelos.models import (
     Vuelo, Ruta, Horario, Escala,
     ControlTrafico, RegistroVuelo, Incidente,
 )
+from vuelos.models.historial_estado_vuelo import HistorialEstadoVuelo
 
 
 class VueloFilter(django_filters.FilterSet):
@@ -52,3 +53,11 @@ class IncidenteFilter(django_filters.FilterSet):
     class Meta:
         model  = Incidente
         fields = ['id_vuelo']
+
+class HistorialEstadoVueloFilter(django_filters.FilterSet):
+    fecha_desde = django_filters.DateTimeFilter(field_name='fecha_cambio', lookup_expr='gte')
+    fecha_hasta = django_filters.DateTimeFilter(field_name='fecha_cambio', lookup_expr='lte')
+
+    class Meta:
+        model  = HistorialEstadoVuelo
+        fields = ['id_vuelo', 'id_estado']

@@ -46,3 +46,11 @@ class IncidenteAdmin(admin.ModelAdmin):
     list_display  = ['id', 'id_vuelo', 'fecha', 'descripcion']
     list_filter   = ['fecha']
     search_fields = ['descripcion']
+
+from vuelos.models import HistorialEstadoVuelo
+
+@admin.register(HistorialEstadoVuelo)
+class HistorialEstadoVueloAdmin(admin.ModelAdmin):
+    list_display  = ['id', 'id_vuelo', 'id_estado', 'fecha_cambio']
+    list_filter   = ['id_estado', 'fecha_cambio']
+    search_fields = ['observacion']
