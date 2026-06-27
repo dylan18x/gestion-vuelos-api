@@ -24,3 +24,12 @@ from .terminal_serializer import *
 from .tipo_avion_serializer import *
 from .clima_serializer import *
 from .estado_vuelo_serializer import *
+
+from .empleado_serializer import EmpleadoSerializer
+from .piloto_serializer import PilotoSerializer
+from .tripulacion_serializer import TripulacionSerializer
+from .asignacion_tripulacion_serializer import AsignacionTripulacionSerializer
+from .pista_serializer import PistaSerializer
+from .asignacion_pista_serializer import AsignacionPistaSerializer  
+from .torre_control_serializer import TorreControlSerializer  
+from .autorizacion_vuelo_serializer import AutorizacionVueloSerializer 
