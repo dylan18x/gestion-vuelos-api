@@ -22,3 +22,5 @@ from .mantenimiento_serializer import *
 from .puerta_embarque_serializer import *
 from .terminal_serializer import *
 from .tipo_avion_serializer import *
+from .clima_serializer import *
+from .estado_vuelo_serializer import *

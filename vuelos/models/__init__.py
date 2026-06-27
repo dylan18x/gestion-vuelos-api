@@ -22,3 +22,5 @@ from .mantenimiento import *
 from .puerta_embarque import *
 from .terminal import *
 from .tipo_avion import *
+from .estado_vuelo import *
+from .clima import *
