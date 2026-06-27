@@ -1,0 +1,8 @@
+# vuelos/serializers/estado_vuelo_serializer.py
+from rest_framework import serializers
+from ..models import EstadoVuelo
+
+class EstadoVueloSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EstadoVuelo
+        fields = '__all__'
