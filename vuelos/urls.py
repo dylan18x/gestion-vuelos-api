@@ -27,7 +27,7 @@ router.register(r'aerolineas', AerolineaViewSet)
 router.register(r'aviones', AvionViewSet)
 router.register(r'tipos-avion', TipoAvionViewSet)
 router.register(r'mantenimientos', MantenimientoViewSet)
-router.registe(r'Estado_vuelo', EstadoVueloViewSet)
+router.register(r'Estado_vuelo', EstadoVueloViewSet)
 router.register(r'Clima',ClimaViewSet)
 urlpatterns = [
     path('health/',             health_check),

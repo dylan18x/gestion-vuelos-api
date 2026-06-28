@@ -7,7 +7,7 @@ class EstadoVuelo(models.Model):
     descripcion = models.TextField(blank=True, null=True)
 
     class Meta:
-        db_table = 'estado_vuelo' # Nombre limpio para pgAdmin
+        db_table = 'estado_vuelo' 
         verbose_name = 'Estado de Vuelo'
         verbose_name_plural = 'Estados de Vuelo'
 
