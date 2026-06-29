@@ -8,20 +8,16 @@ from drf_spectacular.views import (
 )
 
 urlpatterns = [
-    # Admin
     path('admin/', admin.site.urls),
 
-    # API principal
     path('api/', include('vuelos.urls')),
 
-    # OpenAPI schema
     path(
         'api/schema/',
         SpectacularAPIView.as_view(),
         name='schema'
     ),
 
-    # Swagger UI
     path(
         'api/docs/',
         SpectacularSwaggerView.as_view(
