@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'vuelos',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +82,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'vuelos.pagination.StandardPagination',
     'PAGE_SIZE': 10,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SIMPLE_JWT = {
@@ -95,3 +97,9 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=False, cast=bool)
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Cotopaxi Airlines API',
+    'DESCRIPTION': 'Documentación de la API del sistema de gestión de vuelos',
+    'VERSION': '1.0.0',
+}
