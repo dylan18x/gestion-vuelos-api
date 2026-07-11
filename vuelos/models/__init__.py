@@ -15,7 +15,7 @@ __all__ = [
     'Vuelo', 'Ruta', 'Horario', 'Escala',
     'ControlTrafico', 'RegistroVuelo', 'Incidente',
 ]
-from .aereolinea import *
+from .aerolinea import *
 from .aeropuerto import *
 from .avion import *
 from .mantenimiento import *

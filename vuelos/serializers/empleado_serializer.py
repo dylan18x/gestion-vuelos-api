@@ -4,4 +4,9 @@ from vuelos.models.empleado import Empleado
 class EmpleadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Empleado
-        fields = '__all__'
+        fields = ['id_empleado', 'nombre', 'cargo']
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['id'] = representation.pop('id_empleado')
+        return representation
