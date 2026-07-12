@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from vuelos.models import HistorialEstadoVuelo
+from vuelos.serializers.estado_vuelo_serializer import EstadoVueloSerializer
 
 
 class HistorialEstadoVueloSerializer(serializers.ModelSerializer):
     class Meta:
+        id_estado = EstadoVueloSerializer(read_only=True)
         model  = HistorialEstadoVuelo
         fields = ['id', 'fecha_cambio', 'observacion', 'id_vuelo', 'id_estado']
         read_only_fields = ['id', 'fecha_cambio']

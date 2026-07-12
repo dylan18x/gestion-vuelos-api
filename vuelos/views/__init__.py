@@ -1,5 +1,5 @@
-from .aereolinea_views import *
-from .aereopuerto_views import * # Con dos 'e'
+from .aerolinea_views import *
+from .aeropuerto_views import * # Con dos 'e'
 from .auth import *
 from .avion_views import *
 from .health import *

@@ -12,10 +12,10 @@ from vuelos.serializers.auth import CustomTokenView
 from vuelos.views.historial_estado_vuelo import HistorialEstadoVueloViewSet
 
 # — Alejandro —
-from vuelos.views.aereopuerto_views import AeropuertoViewSet
+from vuelos.views.aeropuerto_views import AeropuertoViewSet
 from vuelos.views.terminal_views import TerminalViewSet
 from vuelos.views.puerta_embarque_views import PuertaEmbarqueViewSet
-from vuelos.views.aereolinea_views import AerolineaViewSet
+from vuelos.views.aerolinea_views import AerolineaViewSet
 from vuelos.views.avion_views import AvionViewSet
 from vuelos.views.tipo_avion_views import TipoAvionViewSet
 from vuelos.views.matenimiento_views import MantenimientoViewSet
