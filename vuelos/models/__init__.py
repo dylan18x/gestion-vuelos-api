@@ -7,14 +7,6 @@ from .control_trafico import ControlTrafico
 from .registro_vuelo  import RegistroVuelo
 from .incidente       import Incidente
 
-__all__ = [
-    # Alejandro
-    'Aeropuerto', 'Terminal', 'PuertaEmbarque',
-    'Aerolinea', 'Avion', 'TipoAvion', 'Mantenimiento',
-    # Dylan
-    'Vuelo', 'Ruta', 'Horario', 'Escala',
-    'ControlTrafico', 'RegistroVuelo', 'Incidente',
-]
 from .aerolinea import *
 from .aeropuerto import *
 from .avion import *
@@ -33,3 +25,14 @@ from .asignacion_pista import AsignacionPista
 from .torre_control import TorreControl
 from .autorizacion_vuelo import AutorizacionVuelo
 from .historial_estado_vuelo import HistorialEstadoVuelo
+from .profile  import UserProfile
+
+
+__all__ = [
+    # Alejandro
+    'Aeropuerto', 'Terminal', 'PuertaEmbarque',
+    'Aerolinea', 'Avion', 'TipoAvion', 'Mantenimiento',
+    # Dylan
+    'Vuelo', 'Ruta', 'Horario', 'Escala',
+    'ControlTrafico', 'RegistroVuelo', 'Incidente', 'UserProfile'
+]

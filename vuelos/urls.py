@@ -7,6 +7,9 @@ from vuelos.views.health import health_check
 from vuelos.views.auth import RegisterView, LogoutView
 from vuelos.views.user import UserViewSet
 from vuelos.serializers.auth import CustomTokenView
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 # Historial
 from vuelos.views.historial_estado_vuelo import HistorialEstadoVueloViewSet
@@ -31,7 +34,6 @@ from vuelos.views.control_trafico import ControlTraficoViewSet
 from vuelos.views.registro_vuelo import RegistroVueloViewSet
 from vuelos.views.incidente import IncidenteViewSet
 
-# Otros módulos
 from vuelos.views import (
     EmpleadoViewSet,
     PilotoViewSet,
@@ -108,3 +110,6 @@ urlpatterns = [
     # API
     path('', include(router.urls)),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
