@@ -1,8 +1,19 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from vuelos.models import (
     Vuelo, Ruta, Horario, Escala,
     ControlTrafico, RegistroVuelo, Incidente,
 )
+from vuelos.models.profile import UserProfile
+from .models.empleado import Empleado
+from .models.piloto import Piloto
+from .models.tripulacion import Tripulacion
+from .models.asignacion_tripulacion import AsignacionTripulacion
+from .models.pista import Pista
+from .models.asignacion_pista import AsignacionPista
+from .models.torre_control import TorreControl
+from .models.autorizacion_vuelo import AutorizacionVuelo
 
 
 @admin.register(Vuelo)
@@ -54,14 +65,13 @@ class HistorialEstadoVueloAdmin(admin.ModelAdmin):
     list_display  = ['id', 'id_vuelo', 'id_estado', 'fecha_cambio']
     list_filter   = ['id_estado', 'fecha_cambio']
     search_fields = ['observacion']
-from .models.empleado import Empleado
-from .models.piloto import Piloto
-from .models.tripulacion import Tripulacion
-from .models.asignacion_tripulacion import AsignacionTripulacion
-from .models.pista import Pista
-from .models.asignacion_pista import AsignacionPista
-from .models.torre_control import TorreControl
-from .models.autorizacion_vuelo import AutorizacionVuelo
+
+class UserProfileInline(admin.StackedInline):
+    model               = UserProfile
+    can_delete          = False
+    verbose_name_plural = 'Profile'
+    fields              = ['avatar']
+
 
 # Registro de cada modelo en el sitio de administración
 admin.site.register(Empleado)

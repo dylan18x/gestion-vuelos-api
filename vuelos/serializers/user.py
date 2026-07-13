@@ -1,4 +1,4 @@
-# store/serializers/user.py
+# vuelos/serializers/user.py
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
@@ -93,7 +93,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return value
 
     def update(self, instance, validated_data):
-        from store.models.profile import UserProfile
+        from vuelos.models.profile import UserProfile
         profile_data = validated_data.pop('profile', {})
         instance     = super().update(instance, validated_data)
         if profile_data:
