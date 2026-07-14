@@ -7,6 +7,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.models import User
 
+from vuelos.permissions import EsRRHH
 from vuelos.serializers.user import (
     UserSerializer,
     UserProfileSerializer,
@@ -18,7 +19,7 @@ from vuelos.pagination import StandardPagination
 class UserViewSet(viewsets.ModelViewSet):
     queryset           = User.objects.all().order_by('id')
     serializer_class   = UserSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [EsRRHH]
     pagination_class   = StandardPagination
     filter_backends    = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields   = ['is_staff', 'is_active']
