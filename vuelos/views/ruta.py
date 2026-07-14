@@ -4,7 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from vuelos.models           import Ruta
 from vuelos.serializers.ruta import RutaSerializer
-from vuelos.permissions      import IsStaffOrReadOnly
+from vuelos.permissions      import EsOperadorVuelo
 from vuelos.filters          import RutaFilter
 from vuelos.pagination       import StandardPagination
 
@@ -12,7 +12,7 @@ from vuelos.pagination       import StandardPagination
 class RutaViewSet(viewsets.ModelViewSet):
     queryset           = Ruta.objects.select_related('origen', 'destino').all()
     serializer_class   = RutaSerializer
-    permission_classes = [IsStaffOrReadOnly]
+    permission_classes = [EsOperadorVuelo]
     pagination_class   = StandardPagination
     filter_backends    = [DjangoFilterBackend, OrderingFilter]
     filterset_class    = RutaFilter

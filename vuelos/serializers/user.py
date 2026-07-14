@@ -8,6 +8,7 @@ class RegisterSerializer(serializers.Serializer):
     email     = serializers.EmailField()
     password  = serializers.CharField(min_length=8, write_only=True)
     password2 = serializers.CharField(write_only=True)
+    role = serializers.SerializerMethodField()
 
     def validate_username(self, value):
         if User.objects.filter(username=value).exists():
@@ -37,12 +38,16 @@ class UserSerializer(serializers.ModelSerializer):
         model  = User
         fields = [
             'id', 'username', 'email', 'first_name', 'last_name',
-            'is_staff', 'is_active', 'date_joined', 'num_orders', 'avatar_url',
+            'is_staff', 'is_active', 'date_joined', 'num_orders', 'avatar_url','role'
         ]
         read_only_fields = ['id', 'date_joined']
 
     def get_num_orders(self, obj):
         return obj.orders.count()
+    
+    def get_role(self, obj):
+        group = obj.groups.first()
+        return group.name if group else None
 
     def get_avatar_url(self, obj):                     # ← nuevo
         request = self.context.get('request')
