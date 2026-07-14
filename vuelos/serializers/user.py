@@ -43,7 +43,7 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'date_joined']
 
     def get_num_orders(self, obj):
-        return obj.orders.count()
+        return 0
     
     def get_role(self, obj):
         group = obj.groups.first()
