@@ -1,12 +1,4 @@
-import uuid
-
 from django.db import models
-from pathlib import Path
-from django.db import models
-
-def vuelo_image_path(instance, filename):
-    ext = Path(filename).suffix.lower()
-    return f'tablas/{uuid.uuid4()}{ext}'
 
 
 class Vuelo(models.Model):
@@ -27,7 +19,6 @@ class Vuelo(models.Model):
         related_name='vuelos',
         db_column='id_avion',
     )
-    image       = models.ImageField(upload_to=vuelo_image_path, blank=True, null=True)
 
     class Meta:
         verbose_name        = 'Vuelo'

@@ -1,12 +1,5 @@
-import uuid
-
-from django.db import models
-from pathlib import Path
 from django.db import models
 
-def ruta_image_path(instance, filename):
-    ext = Path(filename).suffix.lower()
-    return f'tablas/{uuid.uuid4()}{ext}'
 
 class Ruta(models.Model):
     origen  = models.ForeignKey(
@@ -21,7 +14,6 @@ class Ruta(models.Model):
         related_name='rutas_destino',
         db_column='destino',
     )
-    image       = models.ImageField(upload_to=ruta_image_path, blank=True, null=True)
 
     class Meta:
         verbose_name        = 'Ruta'
