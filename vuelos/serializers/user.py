@@ -8,7 +8,6 @@ class RegisterSerializer(serializers.Serializer):
     email     = serializers.EmailField()
     password  = serializers.CharField(min_length=8, write_only=True)
     password2 = serializers.CharField(write_only=True)
-    role = serializers.SerializerMethodField()
 
     def validate_username(self, value):
         if User.objects.filter(username=value).exists():
@@ -32,7 +31,8 @@ class RegisterSerializer(serializers.Serializer):
 
 class UserSerializer(serializers.ModelSerializer):
     num_orders = serializers.SerializerMethodField()
-    avatar_url = serializers.SerializerMethodField()   # ← nuevo
+    avatar_url = serializers.SerializerMethodField()
+    role = serializers.SerializerMethodField()
 
     class Meta:
         model  = User
