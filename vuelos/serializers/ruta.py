@@ -6,7 +6,7 @@ class RutaSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     class Meta:
         model  = Ruta
-        fields = ['id', 'origen', 'destino']
+        fields = ['id', 'origen', 'destino','image_url']
         read_only_fields = ['id']
         extra_kwargs = {
             'image': {
