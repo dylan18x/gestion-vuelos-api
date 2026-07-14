@@ -6,7 +6,7 @@ class HorarioSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     class Meta:
         model  = Horario
-        fields = ['id', 'salida_programada', 'llegada_programada', 'id_vuelo']
+        fields = ['id', 'salida_programada', 'llegada_programada', 'id_vuelo','image_url']
         read_only_fields = ['id']
         extra_kwargs = {
             'image': {

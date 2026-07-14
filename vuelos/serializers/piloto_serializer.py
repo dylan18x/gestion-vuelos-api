@@ -5,7 +5,7 @@ class PilotoSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     class Meta:
         model = Piloto
-        fields = ['id_piloto', 'licencia', 'id_empleado']
+        fields = ['id_piloto', 'licencia', 'id_empleado','image_url']
         extra_kwargs = {
             'image': {
                 'required': False,

@@ -5,7 +5,7 @@ class TripulacionSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     class Meta:
         model = Tripulacion
-        fields = ['id_tripulacion', 'cargo', 'id_empleado']
+        fields = ['id_tripulacion', 'cargo', 'id_empleado','image_url']
         extra_kwargs = {
             'image': {
                 'required': False,

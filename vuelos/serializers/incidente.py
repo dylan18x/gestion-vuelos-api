@@ -6,7 +6,7 @@ class IncidenteSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     class Meta:
         model  = Incidente
-        fields = ['id', 'descripcion', 'fecha', 'id_vuelo']
+        fields = ['id', 'descripcion', 'fecha', 'id_vuelo','image_url']
         read_only_fields = ['id']
         extra_kwargs = {
             'image': {

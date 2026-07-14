@@ -6,7 +6,7 @@ class EscalaSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     class Meta:
         model = Escala
-        fields = ['id', 'id_vuelo', 'aeropuerto_escala']
+        fields = ['id', 'id_vuelo', 'aeropuerto_escala','image_url']
         read_only_fields = ['id']
         extra_kwargs = {
             'image': {

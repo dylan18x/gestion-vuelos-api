@@ -8,7 +8,7 @@ class HistorialEstadoVueloSerializer(serializers.ModelSerializer):
     class Meta:
         id_estado = EstadoVueloSerializer(read_only=True)
         model  = HistorialEstadoVuelo
-        fields = ['id', 'fecha_cambio', 'observacion', 'id_vuelo', 'id_estado']
+        fields = ['id', 'fecha_cambio', 'observacion', 'id_vuelo', 'id_estado','image_url']
         read_only_fields = ['id', 'fecha_cambio']
         extra_kwargs = {
             'image': {

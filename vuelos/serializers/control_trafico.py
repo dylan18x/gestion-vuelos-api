@@ -6,7 +6,7 @@ class ControlTraficoSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     class Meta:
         model  = ControlTrafico
-        fields = ['id', 'autorizacion', 'hora', 'id_vuelo']
+        fields = ['id', 'autorizacion', 'hora', 'id_vuelo','image_url']
         read_only_fields = ['id']
 
         extra_kwargs = {

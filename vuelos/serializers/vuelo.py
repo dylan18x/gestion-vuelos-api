@@ -6,7 +6,7 @@ class VueloSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     class Meta:
         model  = Vuelo
-        fields = ['id', 'codigo_vuelo', 'fecha', 'estado', 'id_avion']
+        fields = ['id', 'codigo_vuelo', 'fecha', 'estado', 'id_avion','image_url']
         read_only_fields = ['id']
         extra_kwargs = {
             'image': {
