@@ -3,6 +3,7 @@ from vuelos.models import Incidente
 
 
 class IncidenteSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model  = Incidente
         fields = ['id', 'descripcion', 'fecha', 'id_vuelo']

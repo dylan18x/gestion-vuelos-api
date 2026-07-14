@@ -3,6 +3,7 @@ from vuelos.models import Escala  # Reemplaza 'vuelos' por el nombre real de tu 
 
 
 class EscalaSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model = Escala
         fields = ['id', 'id_vuelo', 'aeropuerto_escala']

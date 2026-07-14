@@ -4,7 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from vuelos.models                 import Incidente
 from vuelos.serializers.incidente  import IncidenteSerializer
-from vuelos.permissions            import IsStaffOrReadOnly
+from vuelos.permissions            import EsTecnico
 from vuelos.filters                import IncidenteFilter
 from vuelos.pagination             import StandardPagination
 
@@ -12,7 +12,7 @@ from vuelos.pagination             import StandardPagination
 class IncidenteViewSet(viewsets.ModelViewSet):
     queryset           = Incidente.objects.select_related('id_vuelo').all()
     serializer_class   = IncidenteSerializer
-    permission_classes = [IsStaffOrReadOnly]
+    permission_classes = [EsTecnico]
     pagination_class   = StandardPagination
     filter_backends    = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class    = IncidenteFilter

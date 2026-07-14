@@ -3,6 +3,7 @@ from vuelos.models import RegistroVuelo
 
 
 class RegistroVueloSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model  = RegistroVuelo
         fields = ['id', 'hora_real_salida', 'hora_real_llegada', 'id_vuelo']

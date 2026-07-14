@@ -3,6 +3,7 @@ from vuelos.models import Ruta
 
 
 class RutaSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model  = Ruta
         fields = ['id', 'origen', 'destino']

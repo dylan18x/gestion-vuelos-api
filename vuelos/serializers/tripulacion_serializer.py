@@ -2,6 +2,7 @@ from rest_framework import serializers
 from vuelos.models.tripulacion import Tripulacion
 
 class TripulacionSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model = Tripulacion
         fields = ['id_tripulacion', 'cargo', 'id_empleado']

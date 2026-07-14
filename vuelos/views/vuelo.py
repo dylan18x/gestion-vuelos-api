@@ -6,7 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from vuelos.models               import Vuelo
 from vuelos.serializers.vuelo    import VueloSerializer
-from vuelos.permissions          import IsStaffOrReadOnly
+from vuelos.permissions          import EsOperadorVuelo
 from vuelos.filters              import VueloFilter
 from vuelos.pagination           import StandardPagination
 
@@ -14,7 +14,7 @@ from vuelos.pagination           import StandardPagination
 class VueloViewSet(viewsets.ModelViewSet):
     queryset           = Vuelo.objects.select_related('id_avion').all()
     serializer_class   = VueloSerializer
-    permission_classes = [IsStaffOrReadOnly]
+    permission_classes = [EsOperadorVuelo]
     pagination_class   = StandardPagination
     filter_backends    = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class    = VueloFilter

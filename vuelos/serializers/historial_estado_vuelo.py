@@ -4,6 +4,7 @@ from vuelos.serializers.estado_vuelo_serializer import EstadoVueloSerializer
 
 
 class HistorialEstadoVueloSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         id_estado = EstadoVueloSerializer(read_only=True)
         model  = HistorialEstadoVuelo

@@ -1,5 +1,13 @@
+import uuid
+
+from django.db import models
+from pathlib import Path
 from django.db import models
 
+
+def horario_image_path(instance, filename):
+    ext = Path(filename).suffix.lower()
+    return f'tablas/{uuid.uuid4()}{ext}'
 
 class Horario(models.Model):
     salida_programada  = models.DateTimeField()
@@ -10,6 +18,7 @@ class Horario(models.Model):
         related_name='horarios',
         db_column='id_vuelo',
     )
+    image       = models.ImageField(upload_to=horario_image_path, blank=True, null=True)
 
     class Meta:
         verbose_name        = 'Horario'

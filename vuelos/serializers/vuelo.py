@@ -3,6 +3,7 @@ from vuelos.models import Vuelo
 
 
 class VueloSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model  = Vuelo
         fields = ['id', 'codigo_vuelo', 'fecha', 'estado', 'id_avion']

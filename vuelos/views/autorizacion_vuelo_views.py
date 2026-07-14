@@ -1,9 +1,9 @@
 from rest_framework import viewsets
 from vuelos.models.autorizacion_vuelo import AutorizacionVuelo
 from vuelos.serializers.autorizacion_vuelo_serializer import AutorizacionVueloSerializer
-from vuelos.permissions import IsStaffOrReadOnly
+from vuelos.permissions import EsControlador
 
 class AutorizacionVueloViewSet(viewsets.ModelViewSet):
     queryset = AutorizacionVuelo.objects.all()
     serializer_class = AutorizacionVueloSerializer
-    permission_classes = [IsStaffOrReadOnly]
+    permission_classes = [EsControlador]

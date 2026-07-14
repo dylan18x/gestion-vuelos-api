@@ -3,6 +3,7 @@ from vuelos.models import Horario
 
 
 class HorarioSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model  = Horario
         fields = ['id', 'salida_programada', 'llegada_programada', 'id_vuelo']

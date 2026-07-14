@@ -3,6 +3,7 @@ from vuelos.models import ControlTrafico
 
 
 class ControlTraficoSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
     class Meta:
         model  = ControlTrafico
         fields = ['id', 'autorizacion', 'hora', 'id_vuelo']
