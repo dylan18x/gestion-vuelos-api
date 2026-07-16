@@ -14,6 +14,18 @@ class AvionSerializer(serializers.ModelSerializer):
                 'allow_null': True,
             }
         }
+    
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+
+        if instance.id_aerolinea:
+            representation['id_aerolinea'] = {
+                'id': instance.id_aerolinea.id_aerolinea,
+                'nombre': instance.id_aerolinea.nombre,
+                'pais': instance.id_aerolinea.pais
+            }
+
+        return representation
 
     def get_image_url(self, obj):
         request = self.context.get('request')

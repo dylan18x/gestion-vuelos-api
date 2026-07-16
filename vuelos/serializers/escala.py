@@ -11,10 +11,8 @@ class EscalaSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         
-        # Si existe la relación con el aeropuerto, anidamos los datos para Flutter
         if instance.aeropuerto_escala:
             representation['aeropuerto_escala'] = {
-                # Usamos 'id_aeropuerto' que es tu primary_key personalizada en el modelo Aeropuerto
                 'id': instance.aeropuerto_escala.id_aeropuerto,
                 'nombre': instance.aeropuerto_escala.nombre,
                 'ciudad': instance.aeropuerto_escala.ciudad,
