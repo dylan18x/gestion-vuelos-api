@@ -10,7 +10,7 @@ class AutorizacionVueloSerializer(serializers.ModelSerializer):
 
         if instance.id_vuelo:
             representation['id_vuelo'] = {
-                'id': instance.id_vuelo.id_vuelo,
+                'id': instance.id_vuelo.id,
                 'codigo_vuelo': instance.id_vuelo.codigo_vuelo,
                 'fecha': instance.id_vuelo.fecha,
                 'estado': instance.id_vuelo.estado
