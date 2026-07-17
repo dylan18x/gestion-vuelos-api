@@ -100,6 +100,10 @@ SIMPLE_JWT = {
 
 CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=False, cast=bool)
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "https://localhost:5173",
+]
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Cotopaxi Airlines API',
     'DESCRIPTION': 'Documentación de la API del sistema de gestión de vuelos',
