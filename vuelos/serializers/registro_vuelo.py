@@ -12,7 +12,6 @@ class RegistroVueloSerializer(serializers.ModelSerializer):
         salida  = data.get('hora_real_salida')
         llegada = data.get('hora_real_llegada')
         
-        # Validación: evita que el avión aterrice antes de haber despegado
         if salida and llegada and llegada <= salida:
             raise serializers.ValidationError('La hora real de llegada debe ser posterior a la de salida.')
         return data

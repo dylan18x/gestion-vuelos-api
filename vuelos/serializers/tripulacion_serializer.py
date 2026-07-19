@@ -13,7 +13,7 @@ class TripulacionSerializer(serializers.ModelSerializer):
         
         if instance.id_empleado:
             representation['id_empleado'] = {
-                'id': instance.id_empleado.id_empleado,
+                'id': instance.id_empleado.id,
                 'nombre': instance.id_empleado.nombre,
                 'cargo': instance.id_empleado.cargo,
             }
