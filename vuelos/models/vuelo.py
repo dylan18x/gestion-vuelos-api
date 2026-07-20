@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Vuelo(models.Model):
+
     ESTADO_CHOICES = [
         ('programado', 'Programado'),
         ('en_vuelo', 'En Vuelo'),
@@ -10,7 +11,10 @@ class Vuelo(models.Model):
         ('demorado', 'Demorado'),
     ]
 
-    codigo_vuelo = models.CharField(max_length=20, unique=True)
+    codigo_vuelo = models.CharField(
+        max_length=20,
+        unique=True
+    )
 
     fecha = models.DateField()
 
@@ -30,6 +34,15 @@ class Vuelo(models.Model):
         default=0
     )
 
+    ruta = models.ForeignKey(
+        'vuelos.Ruta',
+        on_delete=models.PROTECT,
+        related_name='vuelos',
+        db_column='id_ruta',
+        null=True,
+        blank=True
+)
+
     id_avion = models.ForeignKey(
         'vuelos.Avion',
         on_delete=models.PROTECT,
@@ -43,4 +56,7 @@ class Vuelo(models.Model):
         ordering = ['fecha', 'codigo_vuelo']
 
     def __str__(self):
-        return f'{self.codigo_vuelo} — {self.fecha}'
+        return (
+            f'{self.codigo_vuelo} — '
+            f'{self.ruta.origen} → {self.ruta.destino}'
+        )
