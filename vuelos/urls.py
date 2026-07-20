@@ -33,6 +33,7 @@ from vuelos.views.escala import EscalaViewSet
 from vuelos.views.control_trafico import ControlTraficoViewSet
 from vuelos.views.registro_vuelo import RegistroVueloViewSet
 from vuelos.views.incidente import IncidenteViewSet
+from vuelos.views.reserva_view import ReservaViewSet
 
 from vuelos.views import (
     EmpleadoViewSet,
@@ -96,6 +97,12 @@ router.register(
     HistorialEstadoVueloViewSet,
     basename='historial-estado-vuelo'
 )
+router.register(
+    'reservas',
+    ReservaViewSet,
+    basename='reservas'
+)
+
 
 urlpatterns = [
     path('health/', health_check),

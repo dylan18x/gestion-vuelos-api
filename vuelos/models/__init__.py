@@ -6,6 +6,7 @@ from .escala          import Escala
 from .control_trafico import ControlTrafico
 from .registro_vuelo  import RegistroVuelo
 from .incidente       import Incidente
+from .reserva import Reserva
 
 from .aerolinea import *
 from .aeropuerto import *

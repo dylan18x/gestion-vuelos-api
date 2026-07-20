@@ -13,6 +13,7 @@ from .escala          import EscalaSerializer
 from .control_trafico import ControlTraficoSerializer
 from .registro_vuelo  import RegistroVueloSerializer
 from .incidente       import IncidenteSerializer
+from .reserva_serializer import ReservaSerializer
 
 # Serializadores de tu app (copiados exactamente de tus nombres de archivo)
 from .aereolinea_serializer import *
