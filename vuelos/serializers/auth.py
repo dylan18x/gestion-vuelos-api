@@ -18,14 +18,20 @@ class CustomTokenSerializer(TokenObtainPairSerializer):
         data = super().validate(attrs)
         group = self.user.groups.first()
 
-        data['user_id']   = self.user.id
-        data['id']        = self.user.id          # 👈 para que Flutter lo reconozca
-        data['username']  = self.user.username
-        data['email']     = self.user.email
-        data['first_name']= self.user.first_name   # 👈 opcional, para el saludo
-        data['last_name'] = self.user.last_name    # 👈 opcional
-        data['is_staff']  = self.user.is_staff
-        data['role']      = group.name if group else None  # 👈 el que faltaba
+        try:
+            saldo = self.user.profile.saldo
+        except Exception:
+            saldo = 0
+
+        data['user_id']    = self.user.id
+        data['id']         = self.user.id
+        data['username']   = self.user.username
+        data['email']      = self.user.email
+        data['first_name'] = self.user.first_name
+        data['last_name']  = self.user.last_name
+        data['is_staff']   = self.user.is_staff
+        data['role']       = group.name if group else None
+        data['saldo']      = saldo  # ← nuevo
         return data
 
 

@@ -34,6 +34,7 @@ from vuelos.views.control_trafico import ControlTraficoViewSet
 from vuelos.views.registro_vuelo import RegistroVueloViewSet
 from vuelos.views.incidente import IncidenteViewSet
 from vuelos.views.reserva_view import ReservaViewSet
+from vuelos.views.auth import RegisterView, LogoutView, MeView
 
 from vuelos.views import (
     EmpleadoViewSet,
@@ -110,6 +111,7 @@ urlpatterns = [
     # Auth
     path('auth/register/', RegisterView.as_view()),
     path('auth/login/', CustomTokenView.as_view()),
+    path('auth/me/', MeView.as_view()),
     path('auth/token/refresh/', TokenRefreshView.as_view()),
     path('auth/token/verify/', TokenVerifyView.as_view()),
     path('auth/logout/', LogoutView.as_view()),

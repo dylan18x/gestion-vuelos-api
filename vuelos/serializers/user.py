@@ -26,51 +26,42 @@ class RegisterSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         validated_data.pop('password2')
-        return User.objects.create_user(**validated_data)
+        user = User.objects.create_user(
+            **validated_data
+        )
+        from vuelos.models.profile import UserProfile
 
+        UserProfile.objects.create(
+            user=user
+        )
+        return user
 
 class UserSerializer(serializers.ModelSerializer):
     num_orders = serializers.SerializerMethodField()
     avatar_url = serializers.SerializerMethodField()
     role = serializers.SerializerMethodField()
+    saldo = serializers.SerializerMethodField()  # ← nuevo
 
     class Meta:
         model  = User
         fields = [
             'id', 'username', 'email', 'first_name', 'last_name',
-            'is_staff', 'is_active', 'date_joined', 'num_orders', 'avatar_url','role'
+            'is_staff', 'is_active', 'date_joined', 'num_orders', 'avatar_url', 'role', 'saldo'
         ]
         read_only_fields = ['id', 'date_joined']
 
     def get_num_orders(self, obj):
         return 0
-    
+
     def get_role(self, obj):
         group = obj.groups.first()
         return group.name if group else None
 
-    def get_avatar_url(self, obj):                     # ← nuevo
-        request = self.context.get('request')
+    def get_saldo(self, obj):  # ← nuevo
         try:
-            avatar = obj.profile.avatar
-            if avatar:
-                return request.build_absolute_uri(avatar.url) if request else avatar.url
+            return obj.profile.saldo
         except Exception:
-            pass
-        return None
-
-
-class UserProfileSerializer(serializers.ModelSerializer):
-    avatar     = serializers.ImageField(              # ← nuevo
-        source='profile.avatar', required=False, allow_null=True
-    )
-    avatar_url = serializers.SerializerMethodField()  # ← nuevo
-
-    class Meta:
-        model  = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'avatar', 'avatar_url']
-        read_only_fields = ['id']
-        extra_kwargs = {'avatar': {'write_only': True}}
+            return 0
 
     def get_avatar_url(self, obj):
         request = self.context.get('request')
@@ -82,31 +73,36 @@ class UserProfileSerializer(serializers.ModelSerializer):
             pass
         return None
 
-    def validate_email(self, value):
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    avatar     = serializers.ImageField(
+        source='profile.avatar', required=False, allow_null=True
+    )
+    avatar_url = serializers.SerializerMethodField()
+    saldo      = serializers.SerializerMethodField()  # ← nuevo
+
+    class Meta:
+        model  = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'avatar', 'avatar_url', 'saldo']
+        read_only_fields = ['id']
+        extra_kwargs = {'avatar': {'write_only': True}}
+
+    def get_saldo(self, obj):  # ← nuevo
+        try:
+            return obj.profile.saldo
+        except Exception:
+            return 0
+
+    def get_avatar_url(self, obj):
         request = self.context.get('request')
-        if User.objects.filter(email=value).exclude(pk=request.user.pk).exists():
-            raise serializers.ValidationError('This email is already in use.')
-        return value
+        try:
+            avatar = obj.profile.avatar
+            if avatar:
+                return request.build_absolute_uri(avatar.url) if request else avatar.url
+        except Exception:
+            pass
+        return None
 
-    def validate_avatar(self, value):
-        max_size    = 2 * 1024 * 1024  # 2 MB
-        valid_types = ['image/jpeg', 'image/png', 'image/webp']
-        if value and value.size > max_size:
-            raise serializers.ValidationError('Image size must not exceed 2 MB.')
-        if value and value.content_type not in valid_types:
-            raise serializers.ValidationError('Only JPEG, PNG, and WebP images are allowed.')
-        return value
-
-    def update(self, instance, validated_data):
-        from vuelos.models.profile import UserProfile
-        profile_data = validated_data.pop('profile', {})
-        instance     = super().update(instance, validated_data)
-        if profile_data:
-            profile, _ = UserProfile.objects.get_or_create(user=instance)
-            for attr, value in profile_data.items():
-                setattr(profile, attr, value)
-            profile.save()
-        return instance
 
 
 class ChangePasswordSerializer(serializers.Serializer):

@@ -13,6 +13,7 @@ def avatar_upload_path(instance, filename):
 class UserProfile(models.Model):
     user   = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     avatar = models.ImageField(upload_to=avatar_upload_path, blank=True, null=True)
+    saldo  = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # ← nuevo
 
     def __str__(self):
         return f'Profile of {self.user.username}'
